@@ -1,72 +1,64 @@
 const dino = document.querySelector('.dino');
-const background = document.querySelector('.background');
+const background = document.quaryselector("background");
+let isjumping = false;
 
-let isJumping = false;
-let isGameOver = false;
-let position = 0;
-
-function handleKeyUp(event) {
-  if (event.keyCode === 32) {
-    if (!isJumping) {
-      jump();
-    }
-  }
+function addEventListener(event); {
+if (event,keycode === 32) {
+    if (!isjumping) {
+        jump();
+      }
+   }
 }
-
 function jump() {
-  isJumping = true;
+    let position = 0;
 
-  let upInterval = setInterval(() => {
-    if (position >= 150) {
-      // Descendo
-      clearInterval(upInterval);
+    isjumping = true
 
-      let downInterval = setInterval(() => {
-        if (position <= 0) {
-          clearInterval(downInterval);
-          isJumping = false;
-        } else {
-          position -= 20;
-          dino.style.bottom = position + 'px';
-        }
-      }, 20);
+   let upinterval= setInterval(()=> {
+        if (position >= 150) {
+            clearInterval(upinterval)
+       //descendo
+      let downInterval= setInterval(() => {
+            if (position <= 0) {
+               clearInterval(downinterval);
+               isjumping = false;
+            } else {
+               position -= 20;
+               dino.style.botton = position + 'px';
+            }
+         }, 20);
     } else {
-      // Subindo
-      position += 20;
-      dino.style.bottom = position + 'px';
-    }
-  }, 20);
-}
+        //subindo
+        position += 20;
+        dino.style.botton = position + 'px';
+     }     
+   }, 20);
+
 
 function createCactus() {
-  const cactus = document.createElement('div');
-  let cactusPosition = 1000;
-  let randomTime = Math.random() * 6000;
+ const cactus= document.createElement("div");
+ let cactusPosition = 1000;
+ let randomtime = Math.random() = 6000;
 
-  if (isGameOver) return;
+ cactus.classList.add('cactus');
+ cactus.style.left = 1000 +'px';
+ background.appendchild(cactus);
 
-  cactus.classList.add('cactus');
-  background.appendChild(cactus);
-  cactus.style.left = cactusPosition + 'px';
-
-  let leftTimer = setInterval(() => {
-    if (cactusPosition < -60) {
-      // Saiu da tela
-      clearInterval(leftTimer);
-      background.removeChild(cactus);
-    } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
-      // Game over
-      clearInterval(leftTimer);
-      isGameOver = true;
-      document.body.innerHTML = '<h1 class="game-over">Fim de jogo</h1>';
-    } else {
-      cactusPosition -= 10;
-      cactus.style.left = cactusPosition + 'px';
-    }
-  }, 20);
-
-  setTimeout(createCactus, randomTime);
+let interval = setInterval(() => {
+  if (cactusposition < -60) {
+    clearInterval(leftinterval);
+    background.removechild(cactus);
+  } else if (cactusPosition > 0 && cactusPosition < 60  && position < 60) {
+     // Game Over
+     clearInterval(leftinterval);
+     document.body.innerHTML = <h1 class="game-over">Fim de jogo</h1>;
+  } else {
+     cactusposition -= 10;
+     cactus.style.left = cactusPosition + 'px'
+  }
+ },20);
+ setTimeout(createCactus,randomtime);
 }
 
 createCactus();
-document.addEventListener('keyup', handleKeyUp);
+document.addEventListener('keyup',handleKeyUp)}
